@@ -1,0 +1,70 @@
+/**
+ * Write a description of Part2 here.
+ * Assignment that searches a string of characters for a specific string.
+ * @author (A) 
+ * @version (2)
+ */
+public class Part2 {
+       public String findSimpleGene(String dna, String StartCodon, String StopCodon) {
+        String result = "";
+        int startIndex = dna.indexOf(StartCodon);
+        int stopIndex = dna.indexOf(StopCodon, startIndex +3);
+        
+        
+        if (startIndex == -1) {
+            return "Message: No ATG Found";
+        }
+        if (stopIndex == -1) {
+            return "Message: No TAA Found";
+        }
+        else {
+            result = dna.substring(startIndex,stopIndex+3);
+            String finalResult= result.toUpperCase();
+            int compare = finalResult.length()% 3;
+            if (compare == 0) {
+                return finalResult;
+            }
+            else {
+                return "Nothing";
+            }
+        }
+    }
+    
+        public void testFindSimpleGene() {
+      String gene = "";
+      String dna = "AAAATACCAGTACCACTAAGGA";
+      String StartCodon = "ATG";
+      String StopCodon = "TAA";
+      System.out.println("DNA Strand is = " + dna);
+      gene = findSimpleGene(dna,StartCodon,StopCodon);
+      System.out.println("Gene is = " + gene);
+      
+      dna = "ATCATGAACAACGGA";
+      StartCodon = "ATG";
+       StopCodon = "TAA";
+      System.out.println("There is a Strand = " + dna);
+      gene = findSimpleGene(dna,StartCodon,StopCodon);
+      System.out.println("Gene is = " + gene);
+      
+      dna = "ATCGAATCCAAT";
+      StartCodon = "ATG";
+      StopCodon = "TAA";
+      System.out.println("There is a Strand = " + dna);
+      gene = findSimpleGene(dna,StartCodon,StopCodon);
+      System.out.println("Gene is = " + gene);
+      
+      dna = "ATCATCATGGTGGTTTAAGAC";
+      StartCodon = "ATG";
+      StopCodon = "TAA";
+      System.out.println("There is a Strand = " + dna);
+      gene = findSimpleGene(dna,StartCodon,StopCodon);
+      System.out.println("Gene is = " + gene);
+      
+      dna = "ATGCGCCGATAA";
+      StartCodon = "ATG";
+      StopCodon = "TAA";
+      System.out.println("There is a Strand = " + dna);
+      gene = findSimpleGene(dna,StartCodon,StopCodon);
+      System.out.println("Gene is = " + gene);
+    }
+}
